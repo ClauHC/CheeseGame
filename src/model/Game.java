@@ -9,8 +9,8 @@ public class Game {
     //Por si el tablero en un futuro no fuera de 4 casillas y/o no fuera cuadrado
     private final int HORIZONTAL = 4;
     private final int VERTICAL = 4;
-    private final int FINAL_CELL_HORIZONTAL = 3;
-    private final int FINAL_CELL_VERTICAL = 3;
+    private final int FINAL_CHEESE_CELL_HORIZONTAL = 3;
+    private final int FINAL_CHEESE_CELL_VERTICAL = 3;
 
 
 
@@ -20,13 +20,20 @@ public class Game {
         mouseInX = 0;
         mouseInY = 0;
         score = 0;
+        //Luego de crear y llenar el tablero se modifica la primera casilla para que cuente
+        if (board[0][0] instanceof PointsCell) {
+            PointsCell startCell = (PointsCell) board[0][0];
+            startCell.reveal();
+            score += startCell.getPoints();
+        }
+
     }
 
     private void createBoard(){
         for (int i = 0; i < HORIZONTAL; i++){
             for (int j = 0; j < VERTICAL; j++){
-                if (i == FINAL_CELL_HORIZONTAL && j == FINAL_CELL_VERTICAL){
-                    board[i][j] = new EndGameCell();
+                if (i == FINAL_CHEESE_CELL_HORIZONTAL && j == FINAL_CHEESE_CELL_VERTICAL){
+                    board[i][j] = new EndGameCell(EndGamecellType.Cheese);
                 }else{
                     board[i][j] = new PointsCell();
                 }
@@ -81,10 +88,8 @@ public class Game {
         for (int i = 0; i < HORIZONTAL; i++){
             for (int j = 0; j < VERTICAL; j++){
                 if (i == mouseInX && j == mouseInY){
-                    //board[i][j] = new EndGameCell();
                     System.out.print("MM ");
                 }else{
-                    //board[i][j] = new PointsCell();
                     System.out.print(board[i][j] + " ");
                 }
             }
