@@ -7,4 +7,8 @@ public class EndGameCell extends GameCell {
         this.type = type;
         this.content =type.getSymbol();
     }
+
+    public EndGamecellType getType() {
+        return type;
+    }
 }
