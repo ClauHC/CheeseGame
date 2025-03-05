@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class MinusCell extends GameCell implements Questionable {
     public MinusCell() {
+        super("00"); // Call the GameCell constructor with a String argument
         this.content = "00";
     }
 

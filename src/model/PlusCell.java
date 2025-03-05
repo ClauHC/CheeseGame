@@ -8,7 +8,7 @@ public class PlusCell extends GameCell implements Questionable {
     private String correctAnswer;
 
     public PlusCell() {
-        this.content = "00";
+        super("00"); // Call the GameCell constructor with a String argument
         String[][] questionSet = {
                 {"Di un IDE para programar en Java", "IntelliJ", "Eclipse", "NetBeans"},
                 {"Lenguaje en que está hecho Java", "C", "C++", "Java"},
@@ -21,7 +21,6 @@ public class PlusCell extends GameCell implements Questionable {
         this.options = new String[]{questionSet[index][1], questionSet[index][2], questionSet[index][3]};
     }
 
-    //@Override es una anotación en Java que se usa cuando un métod de una clase hija sobrescribe un métod de su clase padre o de una interfaz.
     @Override
     public String getQuestion() {
         return question + " (Opciones: " + String.join(", ", options) + ")";
