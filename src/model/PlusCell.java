@@ -8,7 +8,7 @@ public class PlusCell extends GameCell implements Questionable {
     private String correctAnswer;
 
     public PlusCell() {
-        super("00"); // Call the GameCell constructor with a String argument
+        super("00"); // Llamar al constructor GameCell con un argumento String
         String[][] questionSet = {
                 {"Di un IDE para programar en Java", "IntelliJ", "Eclipse", "NetBeans"},
                 {"Lenguaje en que está hecho Java", "C", "C++", "Java"},
@@ -35,9 +35,22 @@ public class PlusCell extends GameCell implements Questionable {
         setDiscovered();
         this.content = "·.";
         System.out.println(getQuestion());
-        String userAnswer = scanner.nextLine();
+        System.out.print("Elige una opción (1, 2, 3): ");
+        int userChoice = scanner.nextInt();
+        scanner.nextLine(); // limpiar el buffer
+
+        String userAnswer = "";
+        if (userChoice == 1) {
+            userAnswer = options[0];
+        } else if (userChoice == 2) {
+            userAnswer = options[1];
+        } else if (userChoice == 3) {
+            userAnswer = options[2];
+        }
+
         if (submitAnswer(userAnswer)) {
             System.out.println("¡Correcto! +50 puntos.");
+            // la clase Game se encarga de sumar los puntos en la parte donde se llama al métod reveal
         } else {
             System.out.println("Incorrecto, no ganas puntos.");
         }
