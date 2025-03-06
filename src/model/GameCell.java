@@ -6,26 +6,37 @@ public abstract class GameCell {
     protected String content;
     private boolean isVisible; //  AGREGO. Nuevo atributo para hacer visible la celda
 
+    /**
+     * Constructor de la clase GameCell
+     * @param content
+     */
     public GameCell(String content) {
         this.content = content;
         this.isDiscovered = false; // AGREGO. Por defecto, las casillas no están descubiertas (por defecto están en 00 y no en ·.)
         this.isVisible = false; // AGREGO. Por defecto, las casillas no son visibles (por defecto están en 00 y no en 10, 20, 30, --, ++, CC)
     }
 
+    /**
+     * Métod que devuelve si la casilla ha sido descubierta (visitada) por el ratón
+     * @return
+     */
     public boolean isDiscovered() {
         return isDiscovered;
     }
 
+    /**
+     * Métod que marca la casilla como descubierta
+     */
     public void setDiscovered() {
         isDiscovered = true;
     }
 
+    /**
+     * Métod que devuelve el contenido de la casilla, es decir la hace visible, elimina los 00 o ·. que la cubren
+     * @return
+     */
     public void setVisible() {
         isVisible = true; // AGREGO. Hace que el contendio de la celda sea visible
-    }
-
-    public boolean getVisible() {
-        return isVisible; // AGREGO. Devuelve si la celda está visible o no
     }
 
     /*
