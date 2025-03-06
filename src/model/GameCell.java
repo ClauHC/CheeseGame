@@ -8,10 +8,12 @@ public abstract class GameCell {
 
     /**
      * Constructor de la clase GameCell
+     * solo necesita un parámetro, el contenido de la casilla para crear el tablero en Game
+     * las otras variables son necesarias solo en los métodos de abajo para ser usados por las clases hijas
      * @param content
      */
     public GameCell(String content) {
-        this.content = content;
+        this.content = content; // AGREGO MÉTOD CONSTRUCTOR. Neceario paar crear el board en Game
     }
 
     /**
@@ -23,7 +25,7 @@ public abstract class GameCell {
     }
 
     /**
-     * Métod que marca la casilla como descubierta
+     * Métod que marca la casilla como descubierta (visitada) por el ratón
      */
     public void setDiscovered() {
         isDiscovered = true;

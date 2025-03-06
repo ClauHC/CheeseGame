@@ -89,6 +89,7 @@ public class Game {
 
     /**
      * Métod que muestra el tablero en modo test
+     * necesita al setTestMode para funcionar
      */
     public void showTestBoard() {
         for (int i = 0; i < BOARD_DIMENSION_X; i++) {
@@ -100,9 +101,10 @@ public class Game {
     }
 
     /**
-     * Métod que muestra el tablero en modo test
+     * Métod que pone el tablero en modo test
      * esto activa la visibilidad de las casillas
      * recibe un valor booleano como parámetro
+     * este métod lo activa y showTestBoard lo muestra
      * @param isTestMode
      */
     public void setTestMode(boolean isTestMode) {
