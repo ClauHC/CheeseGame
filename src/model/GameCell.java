@@ -4,12 +4,12 @@ public abstract class GameCell {
 
     private boolean isDiscovered;
     protected String content;
-    private boolean isVisible; //  HAGO CAMBIO - AGREGO. Nuevo atributo para hacer visible la celda
+    private boolean isVisible; //  AGREGO. Nuevo atributo para hacer visible la celda
 
     public GameCell(String content) {
-        //this.content = content; // HAGO CAMBIO - INABILITO. No se asigna el contenido en el constructor
-        this.isDiscovered = false; // HAGO CAMBIO - AGREGO. Por defecto, las casillas no están descubiertas
-        this.isVisible = false; // HAGO CAMBIO - AGREGO. Por defecto, las casillas no son visibles
+        this.content = content;
+        this.isDiscovered = false; // AGREGO. Por defecto, las casillas no están descubiertas (por defecto están en 00 y no en ·.)
+        this.isVisible = false; // AGREGO. Por defecto, las casillas no son visibles (por defecto están en 00 y no en 10, 20, 30, --, ++, CC)
     }
 
     public boolean isDiscovered() {
@@ -21,11 +21,11 @@ public abstract class GameCell {
     }
 
     public void setVisible() {
-        isVisible = true; // HAGO CAMBIO - AGREGO. Hace que la celda sea visible sin importar si fue descubierta
+        isVisible = true; // AGREGO. Hace que el contendio de la celda sea visible
     }
 
     public boolean getVisible() {
-        return isVisible; // HAGO CAMBIO - AGREGO. Devuelve si la celda está visible o no
+        return isVisible; // AGREGO. Devuelve si la celda está visible o no
     }
 
     /*
@@ -36,7 +36,8 @@ public abstract class GameCell {
      */
 
     /** Métod que devuelve el contenido de la celda
-     *
+     *  Mantengo el métod original y agrego lineas para poder jugar con la visibilidad de la celda
+     * @return String
      */
     @Override
     public String toString() {

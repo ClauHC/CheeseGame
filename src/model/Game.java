@@ -25,14 +25,24 @@ public class Game {
         createBoard();
         mouseInX = 0;
         mouseInY = 0;
-        score = 0;
+        this.score = 0;
 
         // Revelar la primera casilla y sumar puntos
         if (board[0][0] instanceof PointsCell) {
             PointsCell startCell = (PointsCell) board[0][0];
-            startCell.reveal();
+            startCell.discovered();
             score += startCell.getPoints();
         }
+    }
+
+    /**
+     * Métod que actualiza el puntaje del jugador
+     * la clase PlusCell y MinusCell lo necesitan para su correcto funcionamiento
+     * @param points
+     */
+    public void updateScore(int points) {
+        this.score += points;
+        System.out.println("Puntuación actual: " + this.score);
     }
 
     /**
@@ -202,18 +212,18 @@ public class Game {
             PointsCell cell = (PointsCell) targetCell;
             if (!cell.isDiscovered()) {
                 score += cell.getPoints(); // Sumar puntos
-                cell.reveal();
+                cell.discovered();
             }
         }
         // Si es de ++
         else if (targetCell instanceof PlusCell) {
             PlusCell cell = (PlusCell) targetCell;
-            cell.reveal(scanner); // Pregunta y suma puntos si acierta
+            cell.discovered(scanner, this); // Pregunta y suma puntos si acierta
         }
         // Si es de --
         else if (targetCell instanceof MinusCell) {
             MinusCell cell = (MinusCell) targetCell;
-            cell.reveal(scanner); // Pregunta y resta puntos si falla
+            cell.discovered(scanner, this); // Pregunta y resta puntos si falla
         }
         // Si es de fin de juego (queso o gato)
         else if (targetCell instanceof EndGameCell) {

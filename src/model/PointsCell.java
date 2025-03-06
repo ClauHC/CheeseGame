@@ -4,6 +4,9 @@ import java.util.Random;
 public class PointsCell extends GameCell {
     private int points;
 
+    /**
+     * Constructor ode la clase PointsCell
+     */
     public PointsCell() {
         super("00"); // Call the GameCell constructor with a String argument
         int[] values = {10, 20, 30};
@@ -11,11 +14,18 @@ public class PointsCell extends GameCell {
         this.content = "00";
     }
 
+    /**
+     * Métod que devuelve los puntos que se pueden ganar en la casilla
+     * @return
+     */
     public int getPoints() {
         return points;
     }
 
-    public void reveal() {
+    /**
+     * Métod que marca la casilla como ya descubierta
+     */
+    public void discovered() {
         setDiscovered();
         this.content = "·.";
     }

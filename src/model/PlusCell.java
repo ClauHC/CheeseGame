@@ -7,6 +7,9 @@ public class PlusCell extends GameCell implements Questionable {
     private String[] options;
     private String correctAnswer;
 
+    /**
+     * Constructor de la clase PlusCell
+     */
     public PlusCell() {
         super("00"); // Llamar al constructor GameCell con un argumento String
         String[][] questionSet = {
@@ -21,17 +24,34 @@ public class PlusCell extends GameCell implements Questionable {
         this.options = new String[]{questionSet[index][1], questionSet[index][2], questionSet[index][3]};
     }
 
+    /**
+     * Métod que devuelve la pregunta que se le debe hacer al usuario
+     * sobreescribe el métod de la interfaz Questionable
+     * @return
+     */
     @Override
     public String getQuestion() {
         return question + " (Opciones: " + String.join(", ", options) + ")";
     }
 
+    /**
+     * Métod que compara la respuesta del usuario con la respuesta correcta
+     * Sobreescribe el métod de la interfaz Questionable
+     * @param answer
+     * @return
+     */
     @Override
     public boolean submitAnswer(String answer) {
         return answer.equalsIgnoreCase(correctAnswer);
     }
 
-    public void reveal(Scanner scanner) {
+    /**
+     * Métod que marca la casilla como ya descubierta
+     * y pide al usuario que responda una pregunta para sumar pungtos
+     * @param scanner
+     * @param game
+     */
+    public void discovered(Scanner scanner, Game game) {
         setDiscovered();
         this.content = "·.";
         System.out.println(getQuestion());
@@ -50,7 +70,7 @@ public class PlusCell extends GameCell implements Questionable {
 
         if (submitAnswer(userAnswer)) {
             System.out.println("¡Correcto! +50 puntos.");
-            // la clase Game se encarga de sumar los puntos en la parte donde se llama al métod reveal
+            game.updateScore(50); // la clase Game se encarga de sumar los puntos en la parte donde se llama al métod reveal
         } else {
             System.out.println("Incorrecto, no ganas puntos.");
         }
