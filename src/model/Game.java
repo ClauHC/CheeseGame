@@ -197,6 +197,7 @@ public class Game {
 
         // Verificar que la nueva posición esté dentro de los límites del tablero
         if (newX < 0 || newX >= BOARD_DIMENSION_X || newY < 0 || newY >= BOARD_DIMENSION_Y) {
+            System.out.println("No puedes salir de los límites del tablero.");
             return false;
         }
 
